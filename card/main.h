@@ -3,6 +3,9 @@
 #include <list>
 #include <memory>
 
+#define SSC(x)	(static_cast<Suit>		(x) )//STATIC_SUIT_CAST
+#define SIC(x)	(static_cast<int>	(x) )//STATIC_INT_CAST
+
 
 //各スマートポイントのエイリアステンプレート
 template <class T>
@@ -12,19 +15,11 @@ using s_p = std::shared_ptr<T>;
 template <class T>
 using w_p = std::weak_ptr<T>;
 
-using namespace std;
+//using namespace std;
 
 //画面の大きさ
 constexpr auto WINDOW_WIDTH = 800;
 constexpr auto WINDOW_HEIGHT = 600;
-
-//移動スカラー
-constexpr float movescalar = 4.f;
-
-//画像の縦幅
-constexpr int heightsize = 64;
-//画像の横幅
-constexpr int widthsize = 64;
 
 //IPDATAのラッパークラス
 struct MyIP:public IPDATA
