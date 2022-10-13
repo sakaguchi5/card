@@ -1,14 +1,14 @@
-
-import Gamemanager; // Gamemanagerモジュールを取り込む
+/*
+import mylib; // Gamemanagerモジュールを取り込む
 //import main;
-
-mylib::Gmgr::Gmgr()
+using namespace mylib;
+Gmgr::Gmgr()
 {
 }
-/*
+
 mylib::Gmgr::Gmgr(Suit s)
 {
-}*/
+}
 
 mylib::Gmgr::~Gmgr()
 {
@@ -16,4 +16,4 @@ mylib::Gmgr::~Gmgr()
 
 void mylib::Gmgr::mainloop()
 {
-}
+}*/

@@ -3,10 +3,10 @@ module;
 #include <vector>
 #include <array>
 
-export module Gamemanager;
-//import main;
+export module mylib;
+export import :main;
 // クラスSの宣言を参照するためにインポートする
-//import :main;
+ 
 
 namespace mylib {
 using namespace std;
@@ -20,6 +20,7 @@ class Gmgr
 public:
     Gmgr();
     //Gmgr(Suit s);
+    void f(){}
     ~Gmgr();
 
 private:
