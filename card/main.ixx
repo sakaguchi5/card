@@ -23,13 +23,13 @@ enum class Suit
 	Diamond,
 	Club
 };
-
+using enum Suit;
 Suit operator++(Suit& s)
 {
 	switch (s)
 	{
-	case Suit::Club:
-		return s = Suit::Spade;
+	case Club:
+		return s = Spade;
 		break;
 	default:
 		return s = Suit(underlying_type<Suit>::type(s) + 1);
@@ -41,8 +41,8 @@ Suit operator--(Suit& s)
 {
 	switch (s)
 	{
-	case Suit::Spade:
-		return s = Suit::Club;
+	case Spade:
+		return s = Club;
 		break;
 	default:
 		return s = Suit(underlying_type<Suit>::type(s) - 1);
@@ -52,27 +52,30 @@ Suit operator--(Suit& s)
 
 struct SuitItr
 {
-	SuitItr() { begin = Suit::Spade; end = begin; }
-	SuitItr(Suit begin) :begin(begin), end(begin) {}
-	SuitItr(Suit begin, Suit end) :begin(begin), end(end) {}
+	SuitItr() { setItr(Spade); }
+	SuitItr(Suit begin) { setItr(begin); }
+	SuitItr(Suit begin, Suit end) { setItr(begin,end); }
 	Suit begin;
 	Suit end;
 	void operator++() { ++begin; ++end; }
+	void setItr(Suit begin) { this->begin = begin; this->end = begin;}
+	void setItr(Suit begin, Suit end) { this->begin = begin; this->end = end; }
 	//void operator--() { --begin; --end; }
-	void s_while(function<void(Suit dammy)>f)
+	/*
+	void s_while(function<void()>f)
 	{
 		while (begin != end)
 		{
-			f(begin);
+			f();
 			++begin;
 		}
-	}
-	void s_dowhile(function<void(Suit dammy)>f)
+	}*/
+	void s_dowhile(function<void()>f)
 	{
 		do
 		{
 			//cout << (int)begin ;//<< endl
-			f(begin);
+			f();
 			++begin;
 		} while (begin != end);
 	}
@@ -84,15 +87,6 @@ public:
 	pBase(){}
 	pBase(string str,Suit s){}
 	virtual ~pBase(){}
-protected:
-	string name;//名前
-	vector<int> hand;//手札
-	int card;//提示するカード
-	Suit suit;//スート
-	bool isopen;	//公開するかどうか
-	int chip;		//賭けチップ枚数
-	int mychip = 100;//所持チップ枚数
-
 	/**
 	 * \brief カードと掛け金を選択する
 	 * \
@@ -104,7 +98,17 @@ protected:
 	 * \
 	 * \
 	 */
-	virtual bool isOpen(bool b) = 0;
+	virtual void isOpen() = 0;
+protected:
+	string name;//名前
+	vector<int> hand;//手札
+	int card;//提示するカード
+	Suit suit;//スート
+	bool isopen;	//公開するかどうか
+	int chip;		//賭けチップ枚数
+	int mychip = 100;//所持チップ枚数
+
+	
 private:
 
 	

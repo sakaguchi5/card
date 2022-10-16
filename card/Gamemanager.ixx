@@ -14,6 +14,11 @@ using namespace std;
 
 export {
 
+struct FieldTime
+{
+    Suit fieldSuit = Suit::Spade;//Spade-Club
+    int fieldOrder=1;//1-13
+};    
 
 class Gmgr
 {
@@ -22,11 +27,12 @@ public:
     //Gmgr(Suit s);
     void f(){}
     ~Gmgr();
+    void mainloop();
 
 private:
     //array<pBase, 4> ar;	//pBase‚Ì”z—ñ
-    //vector<pBase>ar;
-    void mainloop(){};
+    vector<pBase>ar;
+    
 };      
         
 
@@ -35,5 +41,22 @@ private:
 
 }}
 
+module :private;
+
+mylib::Gmgr::Gmgr()
+{
+}
+
+mylib::Gmgr::~Gmgr()
+{
+}
+
+void mylib::Gmgr::mainloop()
+{
+    for (auto &x : ar)
+    {
+        
+    }
+}
 
 

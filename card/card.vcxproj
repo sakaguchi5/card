@@ -135,7 +135,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Gamemanager.cpp" />
+    <ClCompile Include="Gamemanager.ixx" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="main.ixx" />
+    <ClCompile Include="mylib.ixx" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h" />
