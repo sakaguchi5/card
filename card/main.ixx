@@ -108,9 +108,9 @@ protected:
 	int chip;		//賭けチップ枚数
 	int mychip = 100;//所持チップ枚数
 
-	
+	void makehand();
 private:
-
+	
 	
 };
 
@@ -120,6 +120,8 @@ public:
 	using pBase::pBase;
 
 private:
+	void choice();
+	void isOpen();
 	Suit order;//今何番目か
 };
 class Cpu :public pBase
@@ -135,21 +137,43 @@ private:
 
 
 
-}}
+}
 
-/*
+
+
+}
+
+
 //---------------------------------------------------
 module :private;
+using namespace mylib;
 // プライベートモジュールフラグメント
-mylib::pBase::pBase()
+pBase::pBase()
 {
 	name = "none";
 	suit = Suit::Spade;
 }
-mylib::pBase::pBase(string str, Suit s):name(str),suit(s)
+pBase::pBase(string str, Suit s):name(str),suit(s)
 {
 }
 
-mylib::pBase::~pBase()
+pBase::~pBase()
 {
-}*/
+}
+
+void pBase::makehand()
+{
+	for (int i = 0; i < 13; i++)
+	{
+		hand[i] = i + 1;
+	}
+}
+
+void Player::choice()
+{
+
+}
+
+void Player::isOpen()
+{
+}
