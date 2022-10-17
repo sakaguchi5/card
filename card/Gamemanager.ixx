@@ -41,23 +41,21 @@ private:
 
 }}
 
-//---------------------------------------------------
 module :private;
-using namespace mylib;
-// プライベートモジュールフラグメント
-Gmgr::Gmgr()
+
+mylib::Gmgr::Gmgr()
 {
 }
 
-Gmgr::~Gmgr()
+mylib::Gmgr::~Gmgr()
 {
 }
 
-void Gmgr::mainloop()
+void mylib::Gmgr::mainloop()
 {
-    for (auto& x : ar)
+    for (auto &x : ar)
     {
-        x.choice();
+        
     }
 }
 
