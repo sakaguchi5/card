@@ -1,4 +1,4 @@
-export module mylib;
+//export module mylib;
 
 // 全てのインターフェースパーティションの再エクスポート、必須！
 //export import :main;

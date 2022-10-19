@@ -2,7 +2,7 @@ module;
 #include "DxLib.h"
 #include <vector>
 #include <array>
-
+#include<memory>
 export module mylib;
 export import :main;
 // クラスSの宣言を参照するためにインポートする
@@ -20,18 +20,19 @@ struct FieldTime
     int fieldOrder=1;//1-13
 };    
 
-class Gmgr
+class GameManager
 {
 public:
-    Gmgr();
+    GameManager();
+    ~GameManager();
     //Gmgr(Suit s);
-    void f(){}
-    ~Gmgr();
-    void mainloop();
+    void mainLoop();
 
 private:
-    //array<pBase, 4> ar;	//pBaseの配列
-    vector<pBase>ar;
+    void draw();
+    //array<unique_ptr<Base>, 4>up_base;
+    array<unique_ptr<pBase>, 4>up_pbase;
+   
     
 };      
         
@@ -40,23 +41,3 @@ private:
 
 
 }}
-
-module :private;
-
-mylib::Gmgr::Gmgr()
-{
-}
-
-mylib::Gmgr::~Gmgr()
-{
-}
-
-void mylib::Gmgr::mainloop()
-{
-    for (auto &x : ar)
-    {
-        
-    }
-}
-
-
