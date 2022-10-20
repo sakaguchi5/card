@@ -1,62 +1,43 @@
-/*
-import mylib; // Gamemanagerモジュールを取り込む
-//import main;
-using namespace mylib;
-Gmgr::Gmgr()
-{
-}
-
-mylib::Gmgr::Gmgr(Suit s)
-{
-}
-
-mylib::Gmgr::~Gmgr()
-{
-}
-
-void mylib::Gmgr::mainloop()
-{
-}*/
-import mylib;
-#include"string"
-
-using namespace std;
-using namespace mylib;
-//using Gmgr = GameManager;
-/**/
-// プライベートモジュールフラグメント
-pBase::pBase()
-{
-    name = "none";
-    suit = Suit::Spade;
-}
-pBase::pBase(string str, Suit s) :name(str), suit(s)
-{
-}
-
-pBase::~pBase()
-{
-}
-
+//#include"Gamemanager.h"
+#include"main.h"
+using GM = GameManager;
 GameManager::GameManager()
 {
+
 }
 
-GameManager::~GameManager()
+GameManager::GameManager(Suit s)
 {
+	//static short int i = 0;
+	/*
+	if (e == s)//sはプレイヤーのスート
+	{
+		up_pBases[(int)e] = make_unique<Player>(_sp, e, pot);
+	}
+	else
+	{
+		up_pBases[(int)e] = make_unique<Cpu>(_sp, e, i, pot);
+		i++;
+	}*/
+	for (int i = 0; i < 4; i++)
+	{
+		if (i==SIC(s))
+		{
+			up_pBases[SIC(s)]= make_unique<Player>("", SSC(i));
+		}
+		else
+		{
+			up_pBases[SIC(s)] = make_unique<Cpu>("", SSC(i));
+		}
+	}
+
 }
-
-
 
 void GameManager::mainLoop()
 {
-    
-    for (auto& x : up_pbase)
-    {
 
-    }
 }
-
 void GameManager::draw()
 {
+
 }
