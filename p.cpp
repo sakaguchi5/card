@@ -13,6 +13,11 @@ Player::Player()
 	{
 		v.emplace_back(i);
 	}*/
+	hitvx.push_back(make_pair(0, 0));
+	hitvx.push_back(make_pair(0, 1));
+	hitvx.push_back(make_pair(0, 2));
+	hitvx.push_back(make_pair(0, 3));
+
 }
 
 Player::~Player()
@@ -24,13 +29,23 @@ Player::~Player()
 
 void Player::Draw()
 {
+	// マウスの位置を取得
+	GetMousePoint(&MouseX, &MouseY);
+	
+	//背景表示
 	DrawGraphF(0, 0, back, TRUE);
-	//DrawRectGraph(230+xx, 12, 0, 0, Tx, Ty, img3, FALSE, FALSE);
-	//DrawRectGraph(230+xx-8, 12, urax, uray, Tx, Ty, img3, FALSE, FALSE);
+	//マウスチェック
+	mousecrick();
+	/*
+	drawstr();
+	DrawRectGraph(231,458, urax, uray, Tx, Ty, img3, FALSE, FALSE);
+	DrawRectGraph(448,234, urax, uray, Tx, Ty, img3, FALSE, FALSE);
 	DrawRectGraph(231, 14, urax, uray, Tx, Ty, img3, FALSE, FALSE);//決定
+	DrawRectGraph( 17,234, urax, uray, Tx, Ty, img3, FALSE, FALSE);*/
+	
 	//DrawRectGraph(232, 14, urax, uray, Tx, Ty, img3, FALSE, FALSE);
 	// 
-	//drawfor();
+	drawfor();
 }
 
 void Player::drawfor()
@@ -38,44 +53,85 @@ void Player::drawfor()
 	//1px=0.026458cm  100px=2.6458cm
 	//19±1	範囲forのときにずらす値
 	//21/28
-	//DrawRectGraph(0, 0, 0, 0, Tx, Ty, img3, FALSE, FALSE);
-	//DrawRectGraph(20, 0, 0, 0, Tx, Ty, img3, FALSE, FALSE);
+	int ix = 700;
+	int iy = 70;
+	//ix = 0;
+	//iy = 0;
+	int x1 = 0;
+
+	
+
+	for (auto x : v)
+	{
+		DrawRectGraph(x1+ix, yy * 2+iy, (x - 1) * xx, yy * 2, Tx, Ty, img3, FALSE, FALSE);
+		x1 += 19;
+	}
+}
 
 
+void Player::drawstr()
+{
+	//DrawBox(0, 0, 640, 32, BoxCr, TRUE);
+
+	DrawFormatString(231+4,458+Ty+4, BoxCr, "S Player1 ");
+	DrawFormatString(448+4,234+Ty+4, BoxCr, "H Player2 ");
+	DrawFormatString(231+4, 14+Ty+4, BoxCr, "D Player3 ");
+	DrawFormatString( 17+4,234+Ty+4, BoxCr, "C Player4 ");
+
+	//DrawFormatString( 0,0, BoxCr, "");
+	//S,H,D,C
+}
+void Player::mousecrick()
+{
+	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
+	{
+		// 押されている
+		if (true)
+		{
+			auto result = std::find(hitvx.begin(), hitvx.end(), make_pair(MouseX, MouseY));
+			if (result == hitvx.end()) {
+				DrawFormatString(0,0, BoxCr, "not found ");
+			}
+			else {
+				DrawFormatString(0,0, BoxCr, "found ");
+			}
+		}
+
+	}
+	else
+	{
+		// 押されていない
+	}
+}
+//backup
+/*
+void Player::drawfor()
+{
+	//1px=0.026458cm  100px=2.6458cm
+	//19±1	範囲forのときにずらす値
+	//21/28
+	int ix = 700;
+	int iy = 70;
+	//ix = 0;
+	//iy = 0;
 	int x1 = 0;
 	//int x2 = 0;
 	for (auto x : v)
 	{
-		//DrawRectGraph((x - 1) * 20, 0, (x-1) * 114, 0, 108, 150, img, FALSE, FALSE);
-
-		DrawRectGraph(x1, 0, (x - 1) * xx, 0, Tx, Ty, img3, FALSE, FALSE);
+		DrawRectGraph(x1+ix, 0+iy, (x - 1) * xx, 0, Tx, Ty, img3, FALSE, FALSE);
 		x1 += 18;
 	}
 	x1 = 0;
 	for (auto x : v)
 	{
-		//DrawRectGraph((x - 1) * 20, 0, (x-1) * 114, 0, 108, 150, img, FALSE, FALSE);
-
-		DrawRectGraph(x1, yy, (x - 1) * xx, yy, Tx, Ty, img3, FALSE, FALSE);
+		DrawRectGraph(x1+ix, yy+iy, (x - 1) * xx, yy, Tx, Ty, img3, FALSE, FALSE);
 		x1 += 20;
 	}
 	x1 = 0;
 	for (auto x : v)
 	{
-		//DrawRectGraph((x - 1) * 20, 0, (x-1) * 114, 0, 108, 150, img, FALSE, FALSE);
-
-		DrawRectGraph(x1, yy * 2, (x - 1) * xx, yy * 2, Tx, Ty, img3, FALSE, FALSE);
+		DrawRectGraph(x1+ix, yy * 2+iy, (x - 1) * xx, yy * 2, Tx, Ty, img3, FALSE, FALSE);
 		x1 += 19;
 	}
-	/*
-	int x1 = 0;
-	//int x2 = 0;
-	for(auto x:v)
-	{
-		//DrawRectGraph((x - 1) * 20, 0, (x-1) * 114, 0, 108, 150, img, FALSE, FALSE);
-
-		DrawRectGraph(x1, 0, (x - 1) * 114, 0, 108, 150, img, FALSE, FALSE);
-		x1 += 20;
-	}*/
-	//DrawGraphF(100, 100, img2, TRUE);
 }
+*/

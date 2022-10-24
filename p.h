@@ -16,6 +16,7 @@ constexpr int uray = 200;
 //1768,200
 
 using namespace std;
+using Pair = pair<int, int>;
 class Player
 {
 public:
@@ -24,13 +25,24 @@ public:
 	void Draw();
 	vector<int>v{ 1,2,3,4,5,6,7,8,9,10,11,12,13 };
 	//vector<int>v{ 1,2,3,4,6,7,8,9,11,12,13 };
-	int img;
-	int img2;
+	//int img;
+	//int img2;
 	int img3;
 
 	int back;
+	// •‚Ì’l‚ğæ“¾
+	int BoxCr = GetColor(0, 0, 0);
 private:
 	void drawfor();
+	void drawstr();
 
+	void mousecrick();
+
+	//vector<Point>hitvx;
+	//typedef std::pair<int, int> pair;
+	vector<Pair>hitvx;
+
+	int MouseX = 0;
+	int MouseY = 0;
 };
 
