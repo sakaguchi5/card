@@ -9,16 +9,8 @@ Player::Player()
 	back = LoadGraph("”wŒi2.png");
 	//”wŒi1
 	//ƒgƒ‰ƒ“ƒv.png
-	/*
-	for (int i = 1; i < 14; i++)
-	{
-		v.emplace_back(i);
-	}*/
-	/*
-	hitvx.push_back(make_pair(0, 0));
-	hitvx.push_back(make_pair(20, 50));
-	hitvx.push_back(make_pair(40, 100));
-	hitvx.push_back(make_pair(60, 150));*/
+	
+
 	reHitbox();
 	
 }
@@ -87,20 +79,26 @@ void Player::drawstr()
 }
 void Player::mousecrick()
 {
+	auto Mouse = make_pair(MouseX, MouseY);//Mouse‚ÌƒyƒA‚ðì¬
 	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
 	{
 		// ‰Ÿ‚³‚ê‚Ä‚¢‚é
-		auto result = std::find_if(hitvx.begin(), hitvx.end(), \
+		/*auto result = std::find_if(hitvx.begin(), hitvx.end(), \
 			[=](Pair x){return  0 < MouseX - x.first && MouseX - x.first < 21 \
-					&& 0 < MouseY - x.second && MouseY - x.second < Ty;});
+					&& 0 < MouseY - x.second && MouseY - x.second < Ty;});*/
+		auto result = std::find_if(hitvx.begin(), hitvx.end(), \
+			[=](Pair x) {return	make_pair(0, 0) < Mouse - x && \
+								Mouse - x < make_pair(21, Ty); });
 		if (result == hitvx.end()) 
 		{
-			
-			if (0 < MouseX - hite.first && MouseX - hite.first < Tx \
-				&& 0 < MouseY - hite.second && MouseY - hite.second < Ty)
+			/*
+			if (0 < MouseX - (*hitvx.rbegin()).first && MouseX - (*hitvx.rbegin()).first < Tx \
+			&& 0 < MouseY - (*hitvx.rbegin()).second && MouseY - (*hitvx.rbegin()).second < Ty)*/
+			if (make_pair(0, 0) < Mouse - *hitvx.rbegin() && \
+				Mouse - *hitvx.rbegin() < make_pair(Tx, Ty))
 			{
 				DrawFormatString(0, 0, BoxCr, "found %d", *v.rbegin());
-			}/**/
+			}
 			else
 			{
 				DrawFormatString(0, 0, BoxCr, "not found ");
@@ -108,6 +106,7 @@ void Player::mousecrick()
 		}
 		else
 		{
+			//(*hitvx.rbegin()).first;
 			//result
 			int d = std::distance(hitvx.begin(), result);
 			DrawFormatString(0, 0, BoxCr, "found %d", v[d]);
@@ -131,8 +130,6 @@ void Player::reHitbox()
 		hitvx.push_back(make_pair(ix, 300+iy));
 		ix += 20;
 	}
-
-	hite = *hitvx.rbegin();
 
 	
 }

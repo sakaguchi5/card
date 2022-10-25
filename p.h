@@ -18,6 +18,17 @@ constexpr int uray = 200;
 
 using namespace std;
 using Pair = pair<int, int>;
+
+inline bool operator < (Pair p1, Pair p2) {
+	return p1.first < p2.first&& p1.second < p2.second;
+}
+inline Pair operator - (Pair p1, Pair p2) {
+	Pair result;
+	result.first = p1.first - p2.first;
+	result.second = p1.second - p2.second;
+	return result;
+}
+
 class Player
 {
 public:
@@ -43,7 +54,6 @@ private:
 	//vector<Point>hitvx;
 	//typedef std::pair<int, int> pair;
 	vector<Pair>hitvx;
-	Pair hite;
 
 	int MouseX = 0;
 	int MouseY = 0;
