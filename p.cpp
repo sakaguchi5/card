@@ -1,5 +1,6 @@
 #include"p.h"
-
+#include <algorithm>
+#include<iterator>
 Player::Player()
 {
 	// グラフィックのロード
@@ -13,11 +14,13 @@ Player::Player()
 	{
 		v.emplace_back(i);
 	}*/
+	/*
 	hitvx.push_back(make_pair(0, 0));
-	hitvx.push_back(make_pair(0, 1));
-	hitvx.push_back(make_pair(0, 2));
-	hitvx.push_back(make_pair(0, 3));
-
+	hitvx.push_back(make_pair(20, 50));
+	hitvx.push_back(make_pair(40, 100));
+	hitvx.push_back(make_pair(60, 150));*/
+	reHitbox();
+	
 }
 
 Player::~Player()
@@ -60,11 +63,12 @@ void Player::drawfor()
 	int x1 = 0;
 
 	
-
+	//DrawFormatString(1000,100, BoxCr, "x:%d y%d", x1 + ix, yy * 2 + iy);
 	for (auto x : v)
 	{
-		DrawRectGraph(x1+ix, yy * 2+iy, (x - 1) * xx, yy * 2, Tx, Ty, img3, FALSE, FALSE);
-		x1 += 19;
+		DrawRectGraph(x1+ix, 300+iy, (x - 1) * xx, yy * 2, Tx, Ty, img3, FALSE, FALSE);
+		
+		x1 += 20;
 	}
 }
 
@@ -86,23 +90,53 @@ void Player::mousecrick()
 	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
 	{
 		// 押されている
-		if (true)
+		auto result = std::find_if(hitvx.begin(), hitvx.end(), \
+			[=](Pair x){return  0 < MouseX - x.first && MouseX - x.first < 21 \
+					&& 0 < MouseY - x.second && MouseY - x.second < Ty;});
+		if (result == hitvx.end()) 
 		{
-			auto result = std::find(hitvx.begin(), hitvx.end(), make_pair(MouseX, MouseY));
-			if (result == hitvx.end()) {
-				DrawFormatString(0,0, BoxCr, "not found ");
-			}
-			else {
-				DrawFormatString(0,0, BoxCr, "found ");
+			
+			if (0 < MouseX - hite.first && MouseX - hite.first < Tx \
+				&& 0 < MouseY - hite.second && MouseY - hite.second < Ty)
+			{
+				DrawFormatString(0, 0, BoxCr, "found %d", *v.rbegin());
+			}/**/
+			else
+			{
+				DrawFormatString(0, 0, BoxCr, "not found ");
 			}
 		}
-
+		else
+		{
+			//result
+			int d = std::distance(hitvx.begin(), result);
+			DrawFormatString(0, 0, BoxCr, "found %d", v[d]);
+		}
+			
+		
 	}
 	else
 	{
 		// 押されていない
 	}
 }
+
+void Player::reHitbox()
+{
+	int ix = 700;
+	int iy = 70;
+	
+	for (auto& i : v)
+	{
+		hitvx.push_back(make_pair(ix, 300+iy));
+		ix += 20;
+	}
+
+	hite = *hitvx.rbegin();
+
+	
+}
+
 //backup
 /*
 void Player::drawfor()

@@ -1,6 +1,7 @@
 #pragma once
 #include "DxLib.h"
 #include<vector>
+//#include <algorithm>
 /*
 Tx=128;
 Ty=192;
@@ -25,6 +26,7 @@ public:
 	void Draw();
 	vector<int>v{ 1,2,3,4,5,6,7,8,9,10,11,12,13 };
 	//vector<int>v{ 1,2,3,4,6,7,8,9,11,12,13 };
+	//vector<int>v{ 1,2,3,4,6,7,8,9,11,12 };
 	//int img;
 	//int img2;
 	int img3;
@@ -37,10 +39,11 @@ private:
 	void drawstr();
 
 	void mousecrick();
-
+	void reHitbox();
 	//vector<Point>hitvx;
 	//typedef std::pair<int, int> pair;
 	vector<Pair>hitvx;
+	Pair hite;
 
 	int MouseX = 0;
 	int MouseY = 0;

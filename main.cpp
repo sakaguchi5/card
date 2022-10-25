@@ -31,7 +31,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE,
 	auto p = make_unique<Player>();
 	// グラフィックのロード
 	//int img = LoadGraph("t.jpg");
-	char StrBuf[128], StrBuf2[32];
 	int MouseX, MouseY;
 	int StringCr, BoxCr;
 
