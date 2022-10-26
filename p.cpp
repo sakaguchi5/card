@@ -21,7 +21,36 @@ Player::~Player()
 	DeleteGraph(img3);
 	DeleteGraph(back);
 }
+void Player::Action()
+{
+	if (int esc=0;CheckHitKey(KEY_INPUT_RETURN) == 0)
+	{
+		// 押されていない
+		if (esc > 0)
+			esc = -1;		// ESCキーが離れた瞬間
+		else
+			esc = 0;		// ESCキーが離れている状態
+	}
+	else
+	{
+		// 押されている
+		esc++;				// ESCキーが押されている間は値を増やし続ける
+		if (esc == 1)
+		{/*
+			if (Card!=0)
+			{
+				choiceCard(Card);
+			}*/
+		}
+		/**/
+		if (Card != 0)
+		{
+			choiceCard(Card);
+		}
+	}
+	
 
+}
 void Player::Draw()
 {
 	// マウスの位置を取得
@@ -80,7 +109,8 @@ void Player::drawstr()
 void Player::mousecrick()
 {
 	auto Mouse = make_pair(MouseX, MouseY);//Mouseのペアを作成
-	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0)
+	
+	if ((GetMouseInput() & MOUSE_INPUT_LEFT) != 0&&v.size()!= 0)
 	{
 		// 押されている
 		/*auto result = std::find_if(hitvx.begin(), hitvx.end(), \
@@ -97,7 +127,8 @@ void Player::mousecrick()
 			if (make_pair(0, 0) < Mouse - *hitvx.rbegin() && \
 				Mouse - *hitvx.rbegin() < make_pair(Tx, Ty))
 			{
-				DrawFormatString(0, 0, BoxCr, "found %d", *v.rbegin());
+				Card = *v.rbegin();
+				DrawFormatString(0, 0, BoxCr, "found %d", Card);
 			}
 			else
 			{
@@ -108,8 +139,9 @@ void Player::mousecrick()
 		{
 			//(*hitvx.rbegin()).first;
 			//result
-			int d = std::distance(hitvx.begin(), result);
-			DrawFormatString(0, 0, BoxCr, "found %d", v[d]);
+			int d = (int)std::distance(hitvx.begin(), result);
+			Card = v[d];
+			DrawFormatString(0, 0, BoxCr, "found %d", Card);
 		}
 			
 		
@@ -132,6 +164,13 @@ void Player::reHitbox()
 	}
 
 	
+}
+
+void Player::choiceCard(int card)
+{
+	erase(v, card);
+	hitvx.pop_back();
+	Card = 0;
 }
 
 //backup

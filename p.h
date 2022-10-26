@@ -34,6 +34,7 @@ class Player
 public:
 	Player();
 	~Player();
+	void Action();
 	void Draw();
 	vector<int>v{ 1,2,3,4,5,6,7,8,9,10,11,12,13 };
 	//vector<int>v{ 1,2,3,4,6,7,8,9,11,12,13 };
@@ -51,11 +52,12 @@ private:
 
 	void mousecrick();
 	void reHitbox();
-	//vector<Point>hitvx;
-	//typedef std::pair<int, int> pair;
+	void choiceCard(int card);
 	vector<Pair>hitvx;
 
 	int MouseX = 0;
 	int MouseY = 0;
+	int Card=0;//
+	//Pair itr = hitvx.begin();
 };
 
