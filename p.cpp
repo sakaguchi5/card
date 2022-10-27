@@ -1,12 +1,11 @@
 #include"p.h"
-#include <algorithm>
+
 #include<iterator>
-Player::Player()
+Player::Player(string str, Suit s):pBase(str, s)
 {
 	// グラフィックのロード
 	
 	img3 = LoadGraph("トランプ.png");
-	back = LoadGraph("背景2.png");
 	//背景1
 	//トランプ.png
 	
@@ -19,7 +18,6 @@ Player::~Player()
 {
 	
 	DeleteGraph(img3);
-	DeleteGraph(back);
 }
 void Player::Action()
 {
@@ -56,10 +54,8 @@ void Player::Draw()
 	// マウスの位置を取得
 	GetMousePoint(&MouseX, &MouseY);
 	
-	//背景表示
-	DrawGraphF(0, 0, back, TRUE);
-	//マウスチェック
-	mousecrick();
+	
+	
 	/*
 	drawstr();
 	DrawRectGraph(231,458, urax, uray, Tx, Ty, img3, FALSE, FALSE);
@@ -72,6 +68,11 @@ void Player::Draw()
 	drawfor();
 }
 
+void Player::choice()
+{
+	//マウスチェック
+	mousecrick();
+}
 void Player::drawfor()
 {
 	//1px=0.026458cm  100px=2.6458cm
@@ -124,10 +125,10 @@ void Player::mousecrick()
 			/*
 			if (0 < MouseX - (*hitvx.rbegin()).first && MouseX - (*hitvx.rbegin()).first < Tx \
 			&& 0 < MouseY - (*hitvx.rbegin()).second && MouseY - (*hitvx.rbegin()).second < Ty)*/
-			if (make_pair(0, 0) < Mouse - *hitvx.rbegin() && \
-				Mouse - *hitvx.rbegin() < make_pair(Tx, Ty))
+			if (make_pair(0, 0) < Mouse - hitvx.back() && \
+				Mouse - hitvx.back() < make_pair(Tx, Ty))
 			{
-				Card = *v.rbegin();
+				Card = v.back();
 				DrawFormatString(0, 0, BoxCr, "found %d", Card);
 			}
 			else

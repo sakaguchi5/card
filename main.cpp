@@ -28,7 +28,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE,
 	//バックバッファを準備
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	auto p = make_unique<Player>();
+	//auto p = make_unique<Player>("", SSC(1));
+	//auto c = make_unique<Cpu>("", SSC(3));
+	auto gm= make_unique<GameManager>(SSC(0));
 	// グラフィックのロード
 	//int img = LoadGraph("t.jpg");
 	int MouseX, MouseY;
@@ -54,14 +56,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE,
 		GetMousePoint(&MouseX, &MouseY);
 		// 画面左上の領域に黒い四角を描き前に描いてあった文字列を消す
 		//DrawBox(0, 0, 640, 32, BoxCr, TRUE);
-		p->Action();
-		p->Draw();
-
+		
+		//p->Action();
+		//p->Draw();
+		gm->mainLoop();
+		
 		// 座標文字列を描く
 		DrawFormatString(1000, 0, BoxCr, "座標Ｘ %d　　座標Ｙ %d", MouseX, MouseY);
+		
 		//DrawGraphF(100, 100, img, TRUE);
-		//DrawRectGraph(0, 0, 0, 0, 108, 150, img, FALSE, FALSE);
-		//DrawRectGraph(18, 0, 113, 0, 108, 150, img, FALSE, FALSE);
 		//画面更新
 		ScreenFlip();
 
