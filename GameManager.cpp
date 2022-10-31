@@ -23,11 +23,11 @@ GameManager::GameManager(Suit s)
 	{
 		if (i == SIC(s))
 		{
-			up_pBases[SIC(s)] = make_unique<Player>("Player", SSC(i));
+			up_pBases[i] = make_unique<Player>("Player", SSC(i));
 		}
 		else
 		{
-			up_pBases[SIC(s)] = make_unique<Cpu>("cpu", SSC(i));
+			up_pBases[i] = make_unique<Cpu>("cpu", SSC(i));
 		}
 	}
 
@@ -38,8 +38,8 @@ void GameManager::mainLoop()
 	Draw();
 	for (auto& i : up_pBases)
 	{
-		//i->Action();
-		//i->Draw();
+		i->Action();
+		i->Draw();
 	}
 	
 }

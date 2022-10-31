@@ -46,7 +46,7 @@ void Player::Action()
 			choiceCard(Card);
 		}
 	}
-	
+	choice();
 
 }
 void Player::Draw()
@@ -56,8 +56,8 @@ void Player::Draw()
 	
 	
 	
-	/*
-	drawstr();
+	
+	drawstr();/*
 	DrawRectGraph(231,458, urax, uray, Tx, Ty, img3, FALSE, FALSE);
 	DrawRectGraph(448,234, urax, uray, Tx, Ty, img3, FALSE, FALSE);
 	DrawRectGraph(231, 14, urax, uray, Tx, Ty, img3, FALSE, FALSE);//Œˆ’è
