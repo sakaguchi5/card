@@ -3,11 +3,17 @@ using GM = GameManager;
 GameManager::GameManager()
 {
 	background = LoadGraph("背景2.png");
+	img = LoadGraph("トランプ.png");
 }
 
 GameManager::GameManager(Suit s)
 {
 	background = LoadGraph("背景2.png");
+	img = LoadGraph("トランプ.png");
+	cardPlacement[0] = make_pair(231 + 4, 458 + Ty + 4);
+	cardPlacement[1] = make_pair(448 + 4, 234 + Ty + 4);
+	cardPlacement[2] = make_pair(231 + 4,  14 + Ty + 4);
+	cardPlacement[3] = make_pair( 17 + 4, 234 + Ty + 4);
 	//static short int i = 0;
 	/*
 	if (e == s)//sはプレイヤーのスート
@@ -47,4 +53,39 @@ void GameManager::Draw()
 {
 	//背景表示
 	DrawGraphF(0, 0, background, TRUE);
+	//名前表示
+	drawstr();
+}
+
+void GameManager::drawstr()
+{
+	// 黒の値を取得
+	int BoxCr = GetColor(0, 0, 0);
+	//DrawBox(0, 0, 640, 32, BoxCr, TRUE);
+	/*
+	DrawFormatString(231 + 4, 458 + Ty + 4, BoxCr, "S Player1 ");
+	DrawFormatString(448 + 4, 234 + Ty + 4, BoxCr, "H Player2 ");
+	DrawFormatString(231 + 4, 14 + Ty + 4, BoxCr, "D Player3 ");
+	DrawFormatString(17 + 4, 234 + Ty + 4, BoxCr, "C Player4 ");*/
+
+
+	for (int i=0;auto& x : cardPlacement)
+	{
+		DrawFormatString(x.first, x.second, BoxCr, up_pBases[i]->getName().c_str());
+		DrawRectGraph(x.first-4, x.second-Ty, urax, uray, Tx, Ty, img, FALSE, FALSE);
+
+		//DrawFormatString(x.first, x.second, BoxCr, "S Player1 ");
+		i++;
+	}
+	/*
+	DrawRectGraph(231,458, urax, uray, Tx, Ty, img3, FALSE, FALSE);
+	DrawRectGraph(448,234, urax, uray, Tx, Ty, img3, FALSE, FALSE);
+	DrawRectGraph(231, 14, urax, uray, Tx, Ty, img3, FALSE, FALSE);//決定
+	DrawRectGraph( 17,234, urax, uray, Tx, Ty, img3, FALSE, FALSE);*/
+
+	//S,H,D,C
+}
+void drawFieldCard()
+{
+
 }

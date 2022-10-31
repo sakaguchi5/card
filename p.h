@@ -75,6 +75,10 @@ public:
 	 */
 	virtual void Draw() = 0;
 	 //virtual void isOpen() = 0;
+
+	Suit getSuit() { return suit; }
+	string getName() { return name; }
+
 protected:
 
 private:
@@ -85,6 +89,8 @@ protected:
 	string name;//名前
 	Suit suit = Suit::Spade;//スート
 	vector<int> hand;//手札
+	//int choiceCard;
+	int Card = 0;//選択したカード
 private:
 
 };
@@ -98,7 +104,7 @@ public:
 private:
 	void choice();
 	void drawfor();
-	void drawstr();
+	
 	void mousecrick();
 	void reHitbox();
 	void choiceCard(int card);
@@ -118,7 +124,7 @@ private:
 
 	int MouseX = 0;
 	int MouseY = 0;
-	int Card = 0;//
+	
 	//Pair itr = hitvx.begin();
 	//AllData data;//全データ
 };
@@ -146,17 +152,20 @@ class GameManager
 {
 public:
 	GameManager();
-	~GameManager() { DeleteGraph(background); }
+	~GameManager() { DeleteGraph(background); DeleteGraph(img);}
 	GameManager(Suit s);
 	void mainLoop();
 
 private:
 	void Draw();
+	void drawstr();
 public:
 private:
 	array<unique_ptr<pBase>, 4>up_pBases;
+	array<Pair, 4>cardPlacement;
 	//array<unique_ptr<GameVar>, 4>datas;
 	int background;//背景
+	int img;
 };
 
 

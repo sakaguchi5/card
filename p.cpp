@@ -55,9 +55,9 @@ void Player::Draw()
 	GetMousePoint(&MouseX, &MouseY);
 	
 	
+	//DrawRectGraph(232, 14, urax, uray, Tx, Ty, img3, FALSE, FALSE);
 	
-	
-	drawstr();/*
+	/*
 	DrawRectGraph(231,458, urax, uray, Tx, Ty, img3, FALSE, FALSE);
 	DrawRectGraph(448,234, urax, uray, Tx, Ty, img3, FALSE, FALSE);
 	DrawRectGraph(231, 14, urax, uray, Tx, Ty, img3, FALSE, FALSE);//åàíË
@@ -94,19 +94,6 @@ void Player::drawfor()
 	}
 }
 
-
-void Player::drawstr()
-{
-	//DrawBox(0, 0, 640, 32, BoxCr, TRUE);
-
-	DrawFormatString(231+4,458+Ty+4, BoxCr, "S Player1 ");
-	DrawFormatString(448+4,234+Ty+4, BoxCr, "H Player2 ");
-	DrawFormatString(231+4, 14+Ty+4, BoxCr, "D Player3 ");
-	DrawFormatString( 17+4,234+Ty+4, BoxCr, "C Player4 ");
-
-	//DrawFormatString( 0,0, BoxCr, "");
-	//S,H,D,C
-}
 void Player::mousecrick()
 {
 	auto Mouse = make_pair(MouseX, MouseY);//MouseÇÃÉyÉAÇçÏê¨
