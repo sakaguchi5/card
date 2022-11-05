@@ -19,9 +19,9 @@ Player::~Player()
 	
 	DeleteGraph(img3);
 }
-void Player::Action()
+void Player::Action(FieldTime fieldTime)
 {
-	if (int esc=0;CheckHitKey(KEY_INPUT_RETURN) == 0)
+	if (int esc=0;CheckHitKey(KEY_INPUT_RETURN) == 0&&fieldTime.fieldSuit==suit)
 	{
 		// ‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢
 		if (esc > 0)
@@ -41,13 +41,15 @@ void Player::Action()
 			}*/
 		}
 		/**/
+
+
 		if (Card != 0)
 		{
 			choiceCard(Card);
 		}
 	}
-	choice();
-
+	//choice();
+	mousecrick();
 }
 void Player::Draw()
 {

@@ -13,7 +13,7 @@ Cpu::~Cpu()
 {
 }
 
-void Cpu::Action()
+void Cpu::Action(FieldTime fieldTime)
 {
 	//choice();
 }

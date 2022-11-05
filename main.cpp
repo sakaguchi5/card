@@ -57,7 +57,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE,
 		// ‰æ–Ê¶ã‚Ì—Ìˆæ‚É•‚¢ŽlŠp‚ð•`‚«‘O‚É•`‚¢‚Ä‚ ‚Á‚½•¶Žš—ñ‚ðÁ‚·
 		//DrawBox(0, 0, 640, 32, BoxCr, TRUE);
 		
-		//p->Action();
+		//p->Action(FieldTime fieldTime);
 		//p->Draw();
 		gm->mainLoop();
 		

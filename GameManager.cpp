@@ -44,7 +44,7 @@ void GameManager::mainLoop()
 	Draw();
 	for (auto& i : up_pBases)
 	{
-		i->Action();
+		i->Action(fieldTime);
 		i->Draw();
 	}
 	

@@ -33,7 +33,73 @@ enum class Suit
 };
 #define SSC(x)	(static_cast<Suit>	(x) )//STATIC_SUIT_CAST
 #define SIC(x)	(static_cast<int>	(x) )//STATIC_INT_CAST
+
+//各スマートポイントのエイリアステンプレート
+template <class T>
+using u_p = std::unique_ptr<T>;
+template <class T>
+using s_p = std::shared_ptr<T>;
+template <class T>
+using w_p = std::weak_ptr<T>;
+
 using enum Suit;
+
+
+
+inline Suit operator++(Suit& s)
+{
+	switch (s)
+	{
+	case Club:
+		return s = Spade;
+		break;
+	default:
+		return s = Suit(underlying_type<Suit>::type(s) + 1);
+		break;
+	}
+}
+
+inline Suit operator--(Suit& s)
+{
+	switch (s)
+	{
+	case Spade:
+		return s = Club;
+		break;
+	default:
+		return s = Suit(underlying_type<Suit>::type(s) - 1);
+		break;
+	}
+}
+
+struct FieldTime
+{
+	FieldTime() { Init(); }
+	Suit fieldSuit;//Spade-Club
+	int fieldOrder;//1-13
+	Suit currentSuit;//Spade-Club
+
+	void Init()
+	{
+		fieldSuit = Spade;//Spade-Club
+		fieldOrder = 1;//1-13
+		currentSuit = Spade;//Spade-Club
+	}
+	
+	void operator++(FieldTime ft)
+	{
+		this->currentSuit++;
+		if (this->currentSuit == Spade)
+		{
+			this->fieldOrder++;
+			if (this->fieldOrder == 13)
+			{
+				this->fieldSuit++;
+			}
+		}
+		//return *this;
+	}
+};
 
 inline bool operator < (Pair p1, Pair p2) {
 	return p1.first < p2.first&& p1.second < p2.second;
@@ -67,7 +133,7 @@ public:
 	 * \
 	 * \
 	 */
-	virtual void Action() = 0;
+	virtual void Action(FieldTime fieldTime) = 0;
 	/**
 	 * \brief 
 	 * \
@@ -99,7 +165,7 @@ class Player :public pBase
 public:
 	Player(string str, Suit s);
 	~Player();
-	void Action();
+	void Action(FieldTime fieldTime);
 	void Draw();
 private:
 	void choice();
@@ -134,7 +200,7 @@ class Cpu :public pBase
 public:
 	Cpu(string str, Suit s);
 	~Cpu();
-	void Action();
+	void Action(FieldTime fieldTime);
 	void Draw();
 private:
 	void choice();
@@ -166,6 +232,8 @@ private:
 	//array<unique_ptr<GameVar>, 4>datas;
 	int background;//背景
 	int img;
+
+	FieldTime fieldTime;
 };
 
 
