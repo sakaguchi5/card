@@ -55,6 +55,11 @@ void GameManager::Draw()
 	DrawGraphF(0, 0, background, TRUE);
 	//名前表示
 	drawstr();
+
+	DrawFormatString(800, 20, GetColor(0, 0, 0), "場 %d　　巡 %d　　現在の手番 %d",
+		fieldTime.fieldSuit, fieldTime.fieldOrder, fieldTime.currentSuit);
+	
+
 }
 
 void GameManager::drawstr()
@@ -67,12 +72,26 @@ void GameManager::drawstr()
 	DrawFormatString(448 + 4, 234 + Ty + 4, BoxCr, "H Player2 ");
 	DrawFormatString(231 + 4, 14 + Ty + 4, BoxCr, "D Player3 ");
 	DrawFormatString(17 + 4, 234 + Ty + 4, BoxCr, "C Player4 ");*/
-
+	auto cL = pBase::getcardList();
+	//S,H,D,C
+	// 座標文字列を描く
+	DrawFormatString(800, 60, GetColor(0, 0, 0), "p1 %d　　p2 %d　　p3 %d　　p4 %d",
+		cL[0], cL[1], cL[2], cL[3]);
 
 	for (int i=0;auto& x : cardPlacement)
 	{
 		DrawFormatString(x.first, x.second, BoxCr, up_pBases[i]->getName().c_str());
-		DrawRectGraph(x.first-4, x.second-Ty, urax, uray, Tx, Ty, img, FALSE, FALSE);
+		if (cL[i]==0)
+		{
+			DrawRectGraph(x.first - 4, x.second - Ty, urax, uray, Tx, Ty, img, FALSE, FALSE);
+		}
+		else
+		{
+			DrawRectGraph(x.first - 4, x.second - Ty, (cL[i] - 1) * xx,yy * SIC(up_pBases[i]->getSuit())\
+				, Tx, Ty, img, FALSE, FALSE);
+		}
+
+		
 
 		//DrawFormatString(x.first, x.second, BoxCr, "S Player1 ");
 		i++;

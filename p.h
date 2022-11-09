@@ -85,17 +85,19 @@ struct FieldTime
 		fieldOrder = 1;//1-13
 		currentSuit = Spade;//Spade-Club
 	}
-	
-	void operator++(FieldTime ft)
+	//FieldTime ft
+	void operator++()
 	{
-		this->currentSuit++;
+		++this->currentSuit;
 		if (this->currentSuit == Spade)
 		{
-			this->fieldOrder++;
-			if (this->fieldOrder == 13)
+			++this->fieldOrder;
+			if (this->fieldOrder == 14)
 			{
-				this->fieldSuit++;
+				++this->fieldSuit;
+				this->fieldOrder = 1;
 			}
+			//sa++;
 		}
 		//return *this;
 	}
@@ -115,7 +117,7 @@ class pBase
 public:
 	pBase() {}
 	pBase(string str, Suit s) { name = str; suit = s; }
-	virtual ~pBase() {}
+	virtual ~pBase() { }
    /**
 	* \brief カードを選択する
 	* \
@@ -133,7 +135,7 @@ public:
 	 * \
 	 * \
 	 */
-	virtual void Action(FieldTime fieldTime) = 0;
+	virtual void Action(FieldTime& fieldTime) = 0;
 	/**
 	 * \brief 
 	 * \
@@ -144,6 +146,8 @@ public:
 
 	Suit getSuit() { return suit; }
 	string getName() { return name; }
+
+	static array<int, 4> getcardList();
 
 protected:
 
@@ -157,6 +161,8 @@ protected:
 	vector<int> hand;//手札
 	//int choiceCard;
 	int Card = 0;//選択したカード
+
+	static array<int, 4>cardList;
 private:
 
 };
@@ -165,7 +171,7 @@ class Player :public pBase
 public:
 	Player(string str, Suit s);
 	~Player();
-	void Action(FieldTime fieldTime);
+	void Action(FieldTime& fieldTime);
 	void Draw();
 private:
 	void choice();
@@ -193,6 +199,7 @@ private:
 	
 	//Pair itr = hitvx.begin();
 	//AllData data;//全データ
+	//FieldTime ft;
 };
 
 class Cpu :public pBase
@@ -200,10 +207,11 @@ class Cpu :public pBase
 public:
 	Cpu(string str, Suit s);
 	~Cpu();
-	void Action(FieldTime fieldTime);
+	void Action(FieldTime& fieldTime);
 	void Draw();
 private:
 	void choice();
+	void CardShuffle();
 public:
 private:
 	vector<int>v;

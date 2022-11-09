@@ -1,6 +1,8 @@
 #include"p.h"
 
 #include<iterator>
+
+array<int, 4> pBase::cardList;
 Player::Player(string str, Suit s):pBase(str, s)
 {
 	// グラフィックのロード
@@ -11,6 +13,7 @@ Player::Player(string str, Suit s):pBase(str, s)
 	
 
 	reHitbox();
+
 	
 }
 
@@ -19,9 +22,12 @@ Player::~Player()
 	
 	DeleteGraph(img3);
 }
-void Player::Action(FieldTime fieldTime)
+void Player::Action(FieldTime& ft)
 {
-	if (int esc=0;CheckHitKey(KEY_INPUT_RETURN) == 0&&fieldTime.fieldSuit==suit)
+	/*DrawFormatString(800, 40, BoxCr, "座標X %d　　座標Y %d　　現在の順番 %d",
+		ft.fieldSuit, ft.fieldOrder, ft.currentSuit);*/
+
+	if (int esc=0;CheckHitKey(KEY_INPUT_RETURN) == 0 )
 	{
 		// 押されていない
 		if (esc > 0)
@@ -33,20 +39,22 @@ void Player::Action(FieldTime fieldTime)
 	{
 		// 押されている
 		esc++;				// ESCキーが押されている間は値を増やし続ける
-		if (esc == 1)
+		if (esc == 1 && ft.currentSuit == suit/**/)
 		{/*
 			if (Card!=0)
 			{
 				choiceCard(Card);
 			}*/
+			if (Card != 0)
+			{
+				choiceCard(Card);
+				++ft;
+			}
 		}
 		/**/
 
 
-		if (Card != 0)
-		{
-			choiceCard(Card);
-		}
+		
 	}
 	//choice();
 	mousecrick();
@@ -56,6 +64,11 @@ void Player::Draw()
 	// マウスの位置を取得
 	GetMousePoint(&MouseX, &MouseY);
 	
+
+
+	/*
+	DrawFormatString(900, 20, BoxCr, "座標X %d　　座標Y %d　　現在の順番 %d",
+		ft.fieldSuit, ft.fieldOrder, ft.currentSuit);*/
 	
 	//DrawRectGraph(232, 14, urax, uray, Tx, Ty, img3, FALSE, FALSE);
 	
@@ -90,10 +103,11 @@ void Player::drawfor()
 	//DrawFormatString(1000,100, BoxCr, "x:%d y%d", x1 + ix, yy * 2 + iy);
 	for (auto x : v)
 	{
-		DrawRectGraph(x1+ix, 300+iy, (x - 1) * xx, yy * 2, Tx, Ty, img3, FALSE, FALSE);
+		DrawRectGraph(x1+ix, 300+iy, (x - 1) * xx, yy * SIC(suit), Tx, Ty, img3, FALSE, FALSE);
 		
 		x1 += 20;
 	}
+
 }
 
 void Player::mousecrick()
@@ -158,9 +172,11 @@ void Player::reHitbox()
 
 void Player::choiceCard(int card)
 {
+	cardList[SIC(suit)] = card;
 	erase(v, card);
 	hitvx.pop_back();
 	Card = 0;
+	
 }
 
 //backup
@@ -195,3 +211,8 @@ void Player::drawfor()
 	}
 }
 */
+
+array<int, 4> pBase::getcardList()
+{
+	return pBase::cardList;
+}

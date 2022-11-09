@@ -45,6 +45,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE,
 	// 黒の値を取得
 	BoxCr = GetColor(0, 0, 0);
 
+	FieldTime ft;
+
 	while (TRUE)
 	{
 		if (CheckHitKey(KEY_INPUT_ESCAPE)) break;
@@ -63,6 +65,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE,
 		
 		// 座標文字列を描く
 		DrawFormatString(1000, 0, BoxCr, "座標Ｘ %d　　座標Ｙ %d", MouseX, MouseY);
+		/*
+		DrawFormatString(800, 20, BoxCr, "座標X %d　　座標Y %d　　現在の順番 %d", 
+			ft.fieldSuit, ft.fieldOrder,ft.currentSuit);*/
+		//++ft;
 		
 		//DrawGraphF(100, 100, img, TRUE);
 		//画面更新
