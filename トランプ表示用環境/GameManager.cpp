@@ -54,15 +54,27 @@ void GameManager::mainLoop()
 	for (auto& i : up_pBases)
 	{
 		i->Action();
+		if (pBase::getbDecisionBs()[SIC(pBase::getfieldTime().currentSuit)])
+		{
+			if (pBase::getbDecisionBs().all())
+			{
+				Judge();
+				pBase::bitreset();
+				Clog->AddCardlog();
+			}
+			++pBase::getfieldTime();
+		}
+		//pBase::getbDecisionBs()[SIC(pBase::getfieldTime().currentSuit)];
 		i->Draw();
 	}
-
+	/*
 	if (pBase::getbDecisionBs().all())
 	{
 		Judge();
 		pBase::bitreset();
 		Clog->AddCardlog();
-	}
+	}*/
+	
 	
 }
 void GameManager::Draw()
@@ -71,17 +83,27 @@ void GameManager::Draw()
 	DrawGraphF(0, 0, background, TRUE);
 	auto ft = pBase::getfieldTime();
 	auto CardLogArray = Clog->getCardlog();
+	int uraax = 210;
+	int uraay = 180;
+	int tx = 35;
+	int ty = 45;
 	for (int i = 0; i < ft.fieldOrder-1; i++)
 	{
 		for (int j = 0; j < 4; j++)
 		{
 			if (CardLogArray[SIC(ft.fieldSuit)][i][j] == 0)
 			{
-				//DrawRectGraph(x.first - 4, x.second - Ty, urax, uray, Tx, Ty, img, FALSE, FALSE);
+				//DrawRectGraph(650+29*i*j, 100+35*i*j, uraax, uraay, tx, ty, img2, FALSE, FALSE);
+				//DrawGraphF(640, 150, img2, TRUE);
+				DrawRectGraph(640 + 29*(i-1), 150 + 35*j, 210, 180,29, ty, img2, FALSE, FALSE);
 			}
 			else
 			{
-
+				//DrawRectGraph(600 - 4, 600 - Ty, urax, uray, Tx, Ty, img2, FALSE, FALSE);
+				//DrawGraphF(640, 150, img2, TRUE);
+				DrawRectGraph(640 + 29 * (i - 1), 150 + 35 * j,
+					tx* (CardLogArray[SIC(ft.fieldSuit)][i][j]-1), ty*j,
+					29, ty, img2, FALSE, FALSE);
 			}
 		}
 	}

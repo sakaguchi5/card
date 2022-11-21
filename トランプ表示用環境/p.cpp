@@ -48,7 +48,7 @@ void Player::Action()
 			if (Card != 0)
 			{
 				choiceCard(Card);
-				++fieldTime;
+				//++fieldTime;
 			}
 		}
 		/**/

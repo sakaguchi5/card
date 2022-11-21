@@ -20,7 +20,7 @@ void Cpu::Action()
 	{
 								//v[fieldTime.fieldOrder-1]
 		cardList[SIC(suit)].first = v[fieldTime.fieldOrder - 1];
-		++fieldTime;
+		//++fieldTime;
 		bDecisionBs.set(SIC(suit));//suit”Ô–Ú‚Ìbit‚ð—§‚Ä‚é			
 	}
 
