@@ -87,7 +87,8 @@ void GameManager::Draw()
 	int uraay = 180;
 	int tx = 35;
 	int ty = 45;
-	for (int i = 0; i < ft.fieldOrder-1; i++)
+	//for (int i = 0; i < ft.fieldOrder-1; i++)
+	for (int i = 0; i < 13; i++)
 	{
 		for (int j = 0; j < 4; j++)
 		{
@@ -95,19 +96,47 @@ void GameManager::Draw()
 			{
 				//DrawRectGraph(650+29*i*j, 100+35*i*j, uraax, uraay, tx, ty, img2, FALSE, FALSE);
 				//DrawGraphF(640, 150, img2, TRUE);
-				DrawRectGraph(640 + 29*(i-1), 150 + 35*j, 210, 180,29, ty, img2, FALSE, FALSE);
+				DrawRectGraph(640 + 29*(i), 130 + 35*j, 210, 180,29, 39, img2, FALSE, FALSE);
 			}
 			else
 			{
 				//DrawRectGraph(600 - 4, 600 - Ty, urax, uray, Tx, Ty, img2, FALSE, FALSE);
 				//DrawGraphF(640, 150, img2, TRUE);
-				DrawRectGraph(640 + 29 * (i - 1), 150 + 35 * j,
+				DrawRectGraph(640 + 29 * (i ), 130 + 35 * j,
 					tx* (CardLogArray[SIC(ft.fieldSuit)][i][j]-1), ty*j,
-					29, ty, img2, FALSE, FALSE);
+					29, 39, img2, FALSE, FALSE);
 			}
 		}
 	}
 	
+	for (int i = 0; i < 13; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			//DrawRectGraph(640 + 29 * (i - 1), 280 + 35 * j, 210, 180, 29, 39, img2, FALSE, FALSE);
+
+			if (CardLogArray[SIC(ft.fieldSuit)][i][j] == 0)
+			{
+				//DrawRectGraph(640 + 29 * (i), 280 + 35 * j, 210, 180, 29, 39, img2, TRUE, FALSE);
+			}
+
+			if (CardLogArray[SIC(ft.fieldSuit)][i][j] == 0)
+			{
+				//DrawRectGraph(650+29*i*j, 100+35*i*j, uraax, uraay, tx, ty, img2, FALSE, FALSE);
+				//DrawGraphF(640, 150, img2, TRUE);
+				//DrawRectGraph(640 + 29 * (i ), 280 + 35 * j, 210, 180, 29, 39, img2, FALSE, FALSE);
+			}
+			else
+			{
+				//DrawRectGraph(600 - 4, 600 - Ty, urax, uray, Tx, Ty, img2, FALSE, FALSE);
+				//DrawGraphF(640, 150, img2, TRUE);
+				DrawRectGraph(640 + 29 * (CardLogArray[SIC(ft.fieldSuit)][i][j] - 1), 280 + 35 * j,
+					tx * (CardLogArray[SIC(ft.fieldSuit)][i][j] - 1), ty * j,
+					29, 39, img2, FALSE, FALSE);
+			}
+		}
+	}
+	//DrawGraphF(640-29, 280, img2, TRUE);
 
 
 	//DrawGraphF(640, 150, img2, TRUE);
@@ -124,7 +153,6 @@ void GameManager::drawstr()
 {
 	// •‚Ì’l‚ðŽæ“¾
 	int BoxCr = GetColor(0, 0, 0);
-	//DrawBox(0, 0, 640, 32, BoxCr, TRUE);
 	/*
 	DrawFormatString(231 + 4, 458 + Ty + 4, BoxCr, "S Player1 ");
 	DrawFormatString(448 + 4, 234 + Ty + 4, BoxCr, "H Player2 ");
