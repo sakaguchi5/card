@@ -39,7 +39,7 @@ void Player::Action()
 	{
 		// ‰Ÿ‚³‚ê‚Ä‚¢‚é
 		esc++;				// ESCƒL[‚ª‰Ÿ‚³‚ê‚Ä‚¢‚éŠÔ‚Í’l‚ğ‘‚â‚µ‘±‚¯‚é
-		if (esc == 1 && fieldTime.currentSuit == suit/**/)
+		if (/*esc == 1 && */fieldTime.currentSuit == suit&&!bDecisionBs[SIC(suit)])
 		{/*
 			if (Card!=0)
 			{

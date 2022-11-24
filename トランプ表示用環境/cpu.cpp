@@ -16,7 +16,7 @@ Cpu::~Cpu()
 
 void Cpu::Action()
 {
-	if (fieldTime.currentSuit == suit&& bDecisionBs[SIC(suit)]==0)
+	if (/**/fieldTime.currentSuit == suit && !bDecisionBs[SIC(suit)] )
 	{
 								//v[fieldTime.fieldOrder-1]
 		cardList[SIC(suit)].first = v[fieldTime.fieldOrder - 1];

@@ -197,7 +197,7 @@ public:
 	static FieldTime& getfieldTime();
 	static array<Hands, 4> &getcardList();
 	static array<int, 4>& getchipList();
-	static bitset<4>getbDecisionBs();
+	static bitset<4>&getbDecisionBs();
 	static void bitreset();//‘Sbit‚ð0‚É‚·‚é
 
 protected:
@@ -324,7 +324,7 @@ private:
 	//FieldTime fieldTime;
 
 	int time = 0;
-
+	bool r = false;//rock
 };
 
 

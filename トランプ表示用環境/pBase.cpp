@@ -22,7 +22,7 @@ array<int, 4>& pBase::getchipList()
 	return pBase::chipList;
 }
 
-bitset<4> pBase::getbDecisionBs()
+bitset<4> &pBase::getbDecisionBs()
 {
 	return pBase::bDecisionBs;
 }

@@ -56,15 +56,31 @@ void GameManager::mainLoop()
 	for (auto& i : up_pBases)
 	{
 		i->Action();
+		if (pBase::getbDecisionBs().all())time++;
+		if (pBase::getbDecisionBs().all() && time == 1)
+		{
+			//time++;
+			r = true;
+			Clog->AddCardlog();
+			
+
+		}
 		if (pBase::getbDecisionBs()[SIC(pBase::getfieldTime().currentSuit)])
 		{
-			if (pBase::getbDecisionBs().all())
+			
+			if (!pBase::getbDecisionBs().all())
+			{++pBase::getfieldTime();
+
+			}
+
+			if (pBase::getbDecisionBs().all()/* */&& time == 360)
 			{
 				Judge();
-				pBase::bitreset();
-				Clog->AddCardlog();
+				pBase::bitreset();				
+				time = 0;
+				r = false;++pBase::getfieldTime();
 			}
-			++pBase::getfieldTime();
+			//++pBase::getfieldTime();
 		}
 		//pBase::getbDecisionBs()[SIC(pBase::getfieldTime().currentSuit)];
 		i->Draw();
@@ -175,7 +191,7 @@ void GameManager::drawstr()
 	for (int i=0;auto& x : cardPlacement)
 	{
 		DrawFormatString(x.first, x.second, BoxCr, up_pBases[i]->getName().c_str());
-		if (cL[i].first ==0)
+		if (/*cL[i].first == 0*/pBase::getbDecisionBs()[i]==0||!r)
 		{
 			DrawRectGraph(x.first - 4, x.second - Ty, urax, uray, Tx, Ty, img, FALSE, FALSE);
 		}
