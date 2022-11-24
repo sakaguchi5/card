@@ -323,6 +323,8 @@ private:
 	vector<array<int, 4>>cardlog;
 	//FieldTime fieldTime;
 
+	int time = 0;
+
 };
 
 

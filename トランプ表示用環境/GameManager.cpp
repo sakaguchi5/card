@@ -17,6 +17,8 @@ GameManager::GameManager(Suit s)
 	cardPlacement[1] = make_pair(448 + 4, 234 + Ty + 4);
 	cardPlacement[2] = make_pair(231 + 4,  14 + Ty + 4);
 	cardPlacement[3] = make_pair( 17 + 4, 234 + Ty + 4);
+	//std::rotate(cardPlacement.begin(), cardPlacement.begin() + SIC(s), cardPlacement.end());
+	std::rotate(cardPlacement.rbegin(), cardPlacement.rbegin() + SIC(s), cardPlacement.rend());
 	//static short int i = 0;
 	/*
 	if (e == s)//sはプレイヤーのスート
@@ -218,13 +220,10 @@ void GameManager::Judge()
 	{
 		if (bs[i])
 		{
-			//vchip[i] += win;
-			//pBase::chipList[i] += 6/win;
 			pBase::getchipList()[i] += 6 / win;
 		}
 		else
 		{
-			//vchip[i] -= lose;
 			pBase::getchipList()[i] -= 6 / lose;
 		}
 	}
