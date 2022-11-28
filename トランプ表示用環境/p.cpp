@@ -24,38 +24,16 @@ Player::~Player()
 }
 void Player::Action()
 {
-	/*DrawFormatString(800, 40, BoxCr, "座標X %d　　座標Y %d　　現在の順番 %d",
-		ft.fieldSuit, ft.fieldOrder, ft.currentSuit);*/
-
-	if (int esc=0;CheckHitKey(KEY_INPUT_RETURN) == 0 )
+	
+	if (CheckHitKey(KEY_INPUT_RETURN)&&fieldTime.currentSuit == suit && !bDecisionBs[SIC(suit)])
 	{
-		// 押されていない
-		if (esc > 0)
-			esc = -1;		// ESCキーが離れた瞬間
-		else
-			esc = 0;		// ESCキーが離れている状態
-	}
-	else
-	{
-		// 押されている
-		esc++;				// ESCキーが押されている間は値を増やし続ける
-		if (/*esc == 1 && */fieldTime.currentSuit == suit&&!bDecisionBs[SIC(suit)])
-		{/*
-			if (Card!=0)
-			{
-				choiceCard(Card);
-			}*/
-			if (Card != 0)
-			{
-				choiceCard(Card);
-				//++fieldTime;
-			}
+		if (Card != 0)
+		{
+			choiceCard(Card);
+			//++fieldTime;
 		}
-		/**/
-
-
-		
 	}
+
 	//choice();
 	mousecrick();
 }

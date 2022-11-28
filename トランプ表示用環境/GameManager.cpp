@@ -114,13 +114,13 @@ void GameManager::Draw()
 			{
 				//DrawRectGraph(650+29*i*j, 100+35*i*j, uraax, uraay, tx, ty, img2, FALSE, FALSE);
 				//DrawGraphF(640, 150, img2, TRUE);
-				DrawRectGraph(640 + 29*(i), 130 + 35*j, 210, 180,29, 39, img2, FALSE, FALSE);
+				DrawRectGraph(700 + 29*(i), 130 + 35*j, 210, 180,29, 39, img2, FALSE, FALSE);
 			}
 			else
 			{
 				//DrawRectGraph(600 - 4, 600 - Ty, urax, uray, Tx, Ty, img2, FALSE, FALSE);
 				//DrawGraphF(640, 150, img2, TRUE);
-				DrawRectGraph(640 + 29 * (i ), 130 + 35 * j,
+				DrawRectGraph(700 + 29 * (i ), 130 + 35 * j,
 					tx* (CardLogArray[SIC(ft.fieldSuit)][i][j]-1), ty*j,
 					29, 39, img2, FALSE, FALSE);
 			}
@@ -148,7 +148,7 @@ void GameManager::Draw()
 			{
 				//DrawRectGraph(600 - 4, 600 - Ty, urax, uray, Tx, Ty, img2, FALSE, FALSE);
 				//DrawGraphF(640, 150, img2, TRUE);
-				DrawRectGraph(640 + 29 * (CardLogArray[SIC(ft.fieldSuit)][i][j] - 1), 280 + 35 * j,
+				DrawRectGraph(700 + 29 * (CardLogArray[SIC(ft.fieldSuit)][i][j] - 1), 280 + 35 * j,
 					tx * (CardLogArray[SIC(ft.fieldSuit)][i][j] - 1), ty * j,
 					29, 39, img2, FALSE, FALSE);
 			}

@@ -3,7 +3,7 @@
 #include <list>
 #include <memory>
 #include"p.h"
-
+constexpr auto FPS = 60;
 using namespace std;
 
 
@@ -30,7 +30,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE,
 
 	//auto p = make_unique<Player>("", SSC(1));
 	//auto c = make_unique<Cpu>("", SSC(3));
-	auto gm= make_unique<GameManager>(SSC(0));
+	auto gm= make_unique<GameManager>(SSC(2));
 	// グラフィックのロード
 	//int img = LoadGraph("t.jpg");
 	int MouseX, MouseY;
@@ -50,7 +50,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE,
 	while (TRUE)
 	{
 		if (CheckHitKey(KEY_INPUT_ESCAPE)) break;
-
+		int nextTime = GetNowCount();	//現在時間の取得
 		//画面クリア
 		ClearDrawScreen();
 		 
@@ -69,7 +69,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE,
 		DrawFormatString(800, 20, BoxCr, "座標X %d　　座標Y %d　　現在の順番 %d", 
 			ft.fieldSuit, ft.fieldOrder,ft.currentSuit);*/
 		//++ft;
-		
+		//FPS処理
+		nextTime += 1000 / FPS;	//1フレームにかかる時間を加算
+		if (nextTime > GetNowCount()) {
+			//処理時間が指定FPSの時間が経過していない場合、経過まで待機
+			WaitTimer(nextTime - GetNowCount());
+		}
 		//DrawGraphF(100, 100, img, TRUE);
 		//画面更新
 		ScreenFlip();
